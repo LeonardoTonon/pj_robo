@@ -32,9 +32,8 @@ class _JoystickExampleState extends State<JoystickExample> {
   double _x = 0;
   double _y = 0;
 
-  // Endpoints para motores e direção
-  static const String motorEndpoint = 'http://endereco-do-seu-motor';
-  static const String direcaoEndpoint = 'http://endereco-da-direcao';
+  static const String motorEndpoint = 'http://';
+  static const String direcaoEndpoint = 'http://';
 
   void _sendPosition(String endpoint, double x, double y) async {
     final response = await http.post(
@@ -66,7 +65,7 @@ class _JoystickExampleState extends State<JoystickExample> {
               alignment: Alignment.topCenter,
               child: JoystickContainer(
                 JoystickMode.horizontal,
-                motorEndpoint, // Especifica o endpoint para o motor
+                motorEndpoint,
                 _sendPosition,
               ),
             ),
@@ -74,7 +73,7 @@ class _JoystickExampleState extends State<JoystickExample> {
               alignment: Alignment.bottomCenter,
               child: JoystickContainer(
                 JoystickMode.all,
-                direcaoEndpoint, // Especifica o endpoint para a direção
+                direcaoEndpoint,
                 _sendPosition,
               ),
             ),
@@ -87,7 +86,7 @@ class _JoystickExampleState extends State<JoystickExample> {
 
 class JoystickContainer extends StatefulWidget {
   final JoystickMode mode;
-  final String endpoint; // Novo: endpoint para onde enviar os dados
+  final String endpoint;
   final Function(String, double, double) onPositionChanged;
 
   const JoystickContainer(this.mode, this.endpoint, this.onPositionChanged,
